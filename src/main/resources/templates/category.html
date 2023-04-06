@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Category Details</title>
+</head>
+<body>
+<h2>Category Details</h2>
+<div th:if="${category}">
+    <p><strong>Name:</strong> <span th:text="${category.name}"/></p>
+    <p><strong>Description:</strong> <span th:text="${category.description}"/></p>
+</div>
+<div th:unless="${category}">
+    <p>Category not found</p>
+</div>
+<p><a href="/category/categories">Back to categories</a></p>
+</body>
+</html>
