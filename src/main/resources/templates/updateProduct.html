@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Categories</title>
+    <title>Update Product</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -33,35 +33,30 @@
         </div>
     </div>
 </nav>
-<div class="container">
-<div class="row col-md-10"><h2>Categories</h2></div>
-<p><a type="button" class="btn btn-outline-dark" href="/category/addCategory">Add Category</a></p>
-<div th:if="${categories}">
-    <table class="table table-bordered table-hover">
-        <thead class="table-dark">
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="category : ${categories}">
-            <td th:text="${category.name}"></td>
-            <td th:text="${category.description}"></td>
-            <td>
-                <a type="button" class="btn btn-outline-dark" th:href="@{/category/category/{id}(id=${category.id})}">View</a>
-                <a type="button" class="btn btn-outline-dark" th:href="@{/category/update/category/{id}(id=${category.id})}">Edit</a>
-                <a type="button" class="btn btn-outline-dark" th:href="@{/category/delete/category/{id}(id=${category.id})}" onclick="return confirm('Are you sure you want to delete this category?')">Delete</a>
-            </td>
-
-        </tr>
-        </tbody>
-    </table>
+<div class="container mt-5">
+    <h2>Update Product</h2>
+    <form th:object="${product}" th:action="@{/product/update/product/{id}(id=${product.id})}" method="post">
+        <div class="form-group">
+            <label for="productName">Product Name:</label>
+            <input type="text" class="form-control" id="productName" th:field="*{name}" required>
+        </div>
+        <div class="form-group">
+            <label for="productDescription">Product Description:</label>
+            <textarea class="form-control" id="productDescription" rows="3" th:field="*{description}" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="productPrice">Product Price:</label>
+            <input type="number" class="form-control" id="productPrice" th:field="*{price}" required>
+        </div>
+        <div class="form-group">
+            <label for="productCategory">Product Category:</label>
+            <select class="form-control" id="productCategory" th:field="*{category}">
+                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Product</button>
+    </form>
 </div>
-<div th:unless="${categories}">
-    <p>No categories found</p>
-</div>
-</div>
+<p><a href="/products">Back to categories</a></p>
 </body>
 </html>

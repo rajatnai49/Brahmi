@@ -3,26 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <title>Edit Category</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" th:href="@{/index}">Brahmi</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/users}">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/category/categories}">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/product/products}">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 <h2>Edit Category</h2>
-<div th:if="${category}">
+<div th:if="${category}" class="container">
   <form th:action="@{/category/update/category/{id}(id=${category.id})}" method="post">
     <input type="hidden" name="_method" value="put"/>
-    <div>
+    <div class="form-group">
       <label for="name">Name:</label>
-      <input type="text" id="name" name="name" th:value="${category.name}"/>
+      <input type="text" class="form-control" id="name" name="name" th:value="${category.name}"/>
     </div>
-    <div>
+    <div class="form-group">
       <label for="description">Description:</label>
-      <input type="text" id="description" name="description" th:value="${category.description}"/>
+      <input type="text" class="form-control" id="description" name="description" th:value="${category.description}"/>
     </div>
-    <div>
-      <input type="submit" value="Save"/>
+    <div class="form-group">
+      <input type="submit" class="btn btn-primary" value="Save"/>
     </div>
   </form>
 </div>
-<div th:unless="${category}">
+<div th:unless="${category}" class="container">
   <p>Category not found</p>
 </div>
 <p><a href="/categories">Back to categories</a></p>

@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -30,7 +33,7 @@ public class Product {
     private Category category;
 
     @Column(nullable = false)
-    private Double price;
+    private BigDecimal price;
 
     @Lob
     private byte[] image;

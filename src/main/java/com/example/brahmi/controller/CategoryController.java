@@ -40,7 +40,7 @@ public class CategoryController {
     public  String addPage() {return "addCategory";}
 
     @PostMapping("/add/category")
-    public String addCandidate(
+    public String addCategory(
             @RequestParam(value = "name", required = true) String name,
             @RequestParam(value = "description", required = true) String description,
             ModelMap categoryModel){

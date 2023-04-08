@@ -1,5 +1,8 @@
 package com.example.brahmi.config;
 
+import com.example.brahmi.dto.ProductDto;
+import com.example.brahmi.entity.Product;
+import com.example.brahmi.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,9 +32,10 @@ public class SpringSecurity {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/register/**").permitAll()
-                                .requestMatchers("/index").permitAll()
+                                .requestMatchers("/index").authenticated()
                                 .requestMatchers("/users/**").authenticated()
-                                .requestMatchers("/category/**").permitAll()
+                                .requestMatchers("/category/**").authenticated()
+                                .requestMatchers("/product/**").authenticated()
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
@@ -59,3 +63,4 @@ public class SpringSecurity {
                 .passwordEncoder(passwordEncoder());
     }
 }
+
