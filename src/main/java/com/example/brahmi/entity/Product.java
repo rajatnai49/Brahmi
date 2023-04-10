@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -35,6 +34,8 @@ public class Product {
     @Column(nullable = false)
     private BigDecimal price;
 
-    @Lob
-    private byte[] image;
+    @Column(nullable = false)
+    private String imageUrl;
+
 }
+

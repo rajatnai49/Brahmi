@@ -19,6 +19,7 @@ public class ProductMapper {
         productDto.setDescription(product.getDescription());
         productDto.setCategory(CategoryMapper.toDto(product.getCategory()));
         productDto.setPrice(BigDecimal.valueOf(product.getPrice().doubleValue()));
+        productDto.setImageUrl(product.getImageUrl());
         return productDto;
     }
 
@@ -29,18 +30,7 @@ public class ProductMapper {
         product.setDescription(productDto.getDescription());
         product.setCategory(CategoryMapper.toEntity(productDto.getCategory()));
         product.setPrice(BigDecimal.valueOf(productDto.getPrice().doubleValue()));
-        try {
-            MultipartFile image = productDto.getImage();
-            if (image != null && !image.isEmpty()) {
-                product.setImage(image.getBytes());
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Error converting image to bytes", e);
-        }
+        product.setImageUrl(productDto.getImageUrl());
         return product;
-    }
-
-    public static String getImageData(byte[] image) {
-        return "data:image/png;base64," + Base64.getEncoder().encodeToString(image);
     }
 }

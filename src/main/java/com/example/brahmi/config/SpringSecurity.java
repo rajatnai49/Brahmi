@@ -1,8 +1,5 @@
 package com.example.brahmi.config;
 
-import com.example.brahmi.dto.ProductDto;
-import com.example.brahmi.entity.Product;
-import com.example.brahmi.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

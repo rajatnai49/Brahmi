@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Product</title>
+
+  <!-- Add Bootstrap CSS file -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+</head>
+<body>
+<h1>Add Product</h1>
+
+<form method="post" th:action="@{/product/add}" th:object="${productDto}">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" class="form-control" id="name" name="name" th:field="*{name}"/>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <input type="text" class="form-control" id="description" name="description" th:field="*{description}"/>
+    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label for="category">Category:</label>
+    <select class="form-control" id="category" name="category.id" th:field="*{category.id}">
+      <option th:each="category : ${categories}"
+              th:value="${category.id}"
+              th:text="${category.name}"></option>
+    </select>
+    <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label for="price">Price:</label>
+    <input type="text" class="form-control" id="price" name="price" th:field="*{price}"/>
+    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label for="imageUrl">Image:</label>
+    <input type="text" class="form-control" id="imageUrl" name="imageUrl"/>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-primary">Add Product</button>
+  </div>
+</form>
+
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js" integrity="sha512-DX9ufPm8UTt08GymtPUexjGC4fi4LON8Nyqz5Z5a5IPaaX9EN5mdSKd1bh2iLgBxImFkWgA43LKZM0pZkmvcIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</body>
+</html>
