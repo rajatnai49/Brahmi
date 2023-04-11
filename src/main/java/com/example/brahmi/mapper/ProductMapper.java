@@ -7,7 +7,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 @Component
 public class ProductMapper {
@@ -33,4 +35,14 @@ public class ProductMapper {
         product.setImageUrl(productDto.getImageUrl());
         return product;
     }
+
+    public List<ProductDto> toDtoList(List<Product> cart) {
+        List<ProductDto> cartItems = new ArrayList<>();
+        for (Product product : cart) {
+            ProductDto productDto = toDto(product);
+            cartItems.add(productDto);
+        }
+        return cartItems;
+    }
+
 }

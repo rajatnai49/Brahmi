@@ -20,6 +20,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/cart}">Cart</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
                 </li>
             </ul>
@@ -30,6 +33,36 @@
 <div class="container">
     <div class="row">
         <h1 class="text-center"> Brahmi </h1>
+    </div>
+
+    <div class="container">
+        <div class="row col-md-10"><h2>Products</h2></div>
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${product.category.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td>
+                    <img th:src="@{${product.imageUrl}}" alt="" width="100px"/>
+                </td>
+                <td>
+                        <a type="button" class="btn btn-outline-dark" th:href="@{/cart/add/{productId}(productId=${product.id})}">Add To Cart</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 </body>

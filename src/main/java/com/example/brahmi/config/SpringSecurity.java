@@ -33,6 +33,8 @@ public class SpringSecurity {
                                 .requestMatchers("/users/**").authenticated()
                                 .requestMatchers("/category/**").authenticated()
                                 .requestMatchers("/product/**").authenticated()
+                                .requestMatchers("/orders/**").authenticated()
+                                .requestMatchers("/cart/**").authenticated()
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")

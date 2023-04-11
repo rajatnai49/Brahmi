@@ -1,9 +1,12 @@
 package com.example.brahmi.controller;
 
 import com.example.brahmi.entity.User;
+import com.example.brahmi.service.CategoryService;
+import com.example.brahmi.service.ProductService;
 import com.example.brahmi.service.UserService;
 import jakarta.validation.Valid;
 import com.example.brahmi.dto.UserDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +19,11 @@ import java.util.List;
 @Controller
 public class AuthController {
 
+    @Autowired
+    private ProductService productService;
+    @Autowired
+    private CategoryService categoryService;
+
     private UserService userService;
 
     public AuthController(UserService userService) {
@@ -25,7 +33,8 @@ public class AuthController {
 
     // handler method to handle home page request
     @GetMapping("/index")
-    public String home(){
+    public String home(Model model){
+        model.addAttribute("products", productService.getAllProducts());
         return "index";
     }
 

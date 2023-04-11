@@ -1,5 +1,6 @@
 package com.example.brahmi.dto;
 
+import com.example.brahmi.entity.Product;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -32,4 +33,5 @@ public class ProductDto {
 
     @NotBlank
     private String imageUrl;
+
 }
