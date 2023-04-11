@@ -51,13 +51,13 @@ public class ProductController {
         }
         productService.createProduct(productDto);
         model.addAttribute("products", productService.getAllProducts());
-        return "product-list";
+        return "redirect:/product/products";
     }
 
     @GetMapping("/{id}/delete")
     public String deleteProduct(@PathVariable Long id, Model model) {
         productService.deleteProduct(id);
         model.addAttribute("products", productService.getAllProducts());
-        return "product-list";
+        return "redirect:/product/products";
     }
 }

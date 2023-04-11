@@ -27,6 +27,9 @@
                     <a class="nav-link active" aria-current="page" th:href="@{/product/products}">Products</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/order/orders}">Orders</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
                 </li>
             </ul>
@@ -35,7 +38,7 @@
 </nav>
 <div class="container">
 <div class="row col-md-10"><h2>Categories</h2></div>
-<p><a type="button" class="btn btn-outline-dark" href="/category/addCategory">Add Category</a></p>
+<p><a type="button" class="btn btn-success" href="/category/addCategory">Add Category</a></p>
 <div th:if="${categories}">
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
@@ -50,9 +53,7 @@
             <td th:text="${category.name}"></td>
             <td th:text="${category.description}"></td>
             <td>
-                <a type="button" class="btn btn-outline-dark" th:href="@{/category/category/{id}(id=${category.id})}">View</a>
-                <a type="button" class="btn btn-outline-dark" th:href="@{/category/update/category/{id}(id=${category.id})}">Edit</a>
-                <a type="button" class="btn btn-outline-dark" th:href="@{/category/delete/category/{id}(id=${category.id})}" onclick="return confirm('Are you sure you want to delete this category?')">Delete</a>
+                <a type="button" class="btn btn-danger" th:href="@{/category/delete/category/{id}(id=${category.id})}" onclick="return confirm('Are you sure you want to delete this category?')">Delete</a>
             </td>
 
         </tr>
