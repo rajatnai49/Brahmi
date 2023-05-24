@@ -35,6 +35,7 @@ public class AuthController {
     @GetMapping("/index")
     public String home(Model model){
         model.addAttribute("products", productService.getAllProducts());
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "index";
     }
 

@@ -1,6 +1,7 @@
 package com.example.brahmi.service;
 
 import com.example.brahmi.dto.ProductDto;
+import com.example.brahmi.entity.Category;
 import com.example.brahmi.entity.Product;
 import com.example.brahmi.exception.ResourceNotFoundException;
 import com.example.brahmi.mapper.ProductMapper;
@@ -23,6 +24,13 @@ public class ProductService {
 
     public List<ProductDto> getAllProducts() {
         List<Product> products = productRepository.findAll();
+        return products.stream()
+                .map(productMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<ProductDto> getProductsByCategory(Category category) {
+        List<Product> products = productRepository.findByCategory(category);
         return products.stream()
                 .map(productMapper::toDto)
                 .collect(Collectors.toList());
