@@ -1,5 +1,6 @@
 package com.example.brahmi.controller;
 
+import com.example.brahmi.entity.Category;
 import com.example.brahmi.entity.User;
 import com.example.brahmi.service.CategoryService;
 import com.example.brahmi.service.ProductService;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;

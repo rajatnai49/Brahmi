@@ -2,6 +2,8 @@ package com.example.brahmi.controller;
 
 import com.example.brahmi.dto.CategoryDto;
 import com.example.brahmi.dto.ProductDto;
+import com.example.brahmi.entity.Category;
+import com.example.brahmi.mapper.CategoryMapper;
 import com.example.brahmi.service.CategoryService;
 import com.example.brahmi.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +24,22 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private CategoryMapper categoryMapper;
 
 
     @GetMapping("/products")
     public String getAllProducts(Model model) {
         model.addAttribute("products", productService.getAllProducts());
         return "product-list";
+    }
+
+    @GetMapping("/byCategory")
+    public String byCategory(@RequestParam CategoryDto categorydto, Model model) {
+        Category category = categoryMapper.toEntity(categorydto);
+        model.addAttribute("products", productService.getProductsByCategory(category));
+        model.addAttribute("categories", categoryService.getAllCategories());
+        return "index";
     }
 
     @GetMapping("/{id}")

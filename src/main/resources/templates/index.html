@@ -10,8 +10,8 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
     <style>
-        .second-nav{
-            margin: 20px 0;
+        .finder{
+            text-align: center;
         }
     </style>
 </head>
@@ -38,32 +38,25 @@
     </div>
 </nav>
 <br /><br />
-<div class="container">
-    <div class="row">
-        <h1 class="text-center"> Brahmi </h1>
-    </div>
 
-    <div class="container-fluid">
-        <div class="row second-nav">
-            <div class="col">
-                <h2>Products</h2>
-            </div>
-            <div class="col align-self-end">
-            <form th:action="@{/products/byCategory}" method="get">
-                <div class="row">
-                    <div class="col align-self-end">
+<div class="container">
+    <div class="finder">
+        <form th:action="@{/product/byCategory}" method="get">
+            <div class="row justify-content-center">
+                <div class="col-4">
                     <select class="form-control"  name="category">
                         <option class="form-control"  value="">All Categories</option>
                         <option class="form-control"  th:each="category : ${categories}" th:value="${category}" th:text="${category.name}"></option>
                     </select>
-                    </div>
-                    <div class="col align-self-end">
-                        <button class="btn btn-outline-info" type="submit">Filter</button>
-                    </div>
                 </div>
-            </form>
+                <div class="col-4">
+                    <button class="btn btn-outline-info" type="submit">Filter</button>
+                </div>
             </div>
-        </div>
+        </form>
+    </div>
+    <br /><br />
+    <div class="container-fluid">
         <table class="table table-bordered table-hover">
             <thead class="table-dark">
             <tr>
